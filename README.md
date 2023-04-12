@@ -12,10 +12,19 @@
 # Installation
 
 ```bash
-$ git clone https://github.com/jinwatanabe/cinderella
-$ cd cinderella
-$ docker-compose build
-$ docker-compose up -d
+$ git clone https://github.com/jinwatanabe/sanpo.git
+$ cd sanpo
+```
+
+### Install Deno
+
+```bash
+$ curl -fsSL https://deno.land/x/install/install.sh | sh
+$ sudo vi ~/.bashrc
+
+# Add the following line to the end of the file
+export DENO_INSTALL="/home/watanabejin/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 ```
 
 # Cron
@@ -39,7 +48,7 @@ $ systemctl start cron
 # Usage
 
 ```bash
-$ yarn dev
+$ make dev
 ```
 
 # Test
