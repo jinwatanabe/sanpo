@@ -4,7 +4,7 @@ import { UserLogInputPort } from "./port/UserLogInputPort.ts";
 export class UserLogUsecase {
   constructor(private inputPort: UserLogInputPort) {}
 
-  execute(): UserLog {
-    return this.inputPort.getUserLog();
+  execute(userId: string): UserLog {
+    return this.inputPort.getUserLog(userId);
   }
 }
