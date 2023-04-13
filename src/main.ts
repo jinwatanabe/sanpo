@@ -1,11 +1,11 @@
-import { serve } from "https://deno.land/std@0.74.0/http/server.ts";
+import { UserLogScraper } from "./driver/UserLogScraper.ts";
+import { UserLogGateway } from "./gateway/UserLogGateway.ts";
+import { UserLogUsecase } from "./usecase/UserLogUsecase.ts";
 
-const server = serve({ hostname: "0.0.0.0", port: 8080 });
-console.log(`HTTP webserver running.  Access it at:  http://localhost:8080/`);
+const driver = new UserLogScraper();
+const userLogGateway = new UserLogGateway(driver);
+const userLogUsecase = new UserLogUsecase(userLogGateway);
 
-for await (const request of server) {
-  let bodyContent = "Your user-agent is:\n\n";
-  bodyContent += request.headers.get("user-agent") || "Unknown";
+const userLog = await userLogUsecase.execute("jinwatanabe");
 
-  request.respond({ status: 200, body: bodyContent });
-}
+console.log(userLog);

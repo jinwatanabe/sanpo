@@ -21,9 +21,19 @@ async function checkUserLog(userId: string): Promise<UserLogJson> {
   const contributions = document.querySelectorAll(
     "rect.ContributionCalendar-day"
   );
-  const latest = contributions[contributions.length - 1] as Element;
+  const currentDate = new Date();
+  const currentDateFormatted = currentDate.toISOString().split("T")[0];
+  let commitCount = 0;
 
-  const commitCount = parseInt(latest.getAttribute("data-count") || "0");
+  contributions.forEach((contribution) => {
+    const c = contribution as Element;
+    const date = c.getAttribute("data-date");
+    const count = parseInt(c.getAttribute("data-level") || "0");
+
+    if (date === currentDateFormatted) {
+      commitCount = count;
+    }
+  });
 
   const commit = commitCount !== 0;
   const name =

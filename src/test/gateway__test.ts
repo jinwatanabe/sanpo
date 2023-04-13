@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.65.0/testing/asserts.ts";
 import { UserLogGateway } from "../gateway/UserLogGateway.ts";
 import { UserLogJson, UserLogScraper } from "../driver/UserLogScraper.ts";
-import { UserCommit, UserId, UserLog, UserName } from "../domain/UserLog.ts";
+import { UserLog } from "../domain/UserLog.ts";
 
 Deno.test("gateway", async () => {
   const scraper = {} as UserLogScraper;
@@ -10,13 +10,9 @@ Deno.test("gateway", async () => {
   };
 
   const userId = "jinwatanabe";
-  const target = new UserLogGateway(userId, scraper);
-  const actual = await target.getUserLog();
-  const expected = new UserLog(
-    new UserId("jinwatanabe"),
-    new UserName("Watanabe Jin"),
-    new UserCommit(true)
-  );
+  const target = new UserLogGateway(scraper);
+  const actual = await target.getUserLog(userId);
+  const expected = new UserLog("jinwatanabe", "Watanabe Jin", true);
 
   assertEquals(actual, expected);
 });
