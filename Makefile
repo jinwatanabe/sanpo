@@ -1,5 +1,5 @@
 dev:
-	deno run --allow-net src/main.ts
+	deno run --allow-net --allow-read src/main.ts
 
 test:
 	deno test
