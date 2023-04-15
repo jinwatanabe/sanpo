@@ -24,16 +24,7 @@ $ cd sanpo
 
 ### Install deno
 
-```bash
-$ curl -fsSL https://deno.land/x/install/install.sh | sh
-$ sudo vi ~/.bashrc
-
-# Add the following line to the end of the file
-export DENO_INSTALL="/home/ユーザー名/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-$ source ~/.bashrc
-```
+https://deno.land/manual@v1.32.4/getting_started/installation
 
 ### Configure LINE Notify
 
@@ -41,17 +32,19 @@ $ source ~/.bashrc
 $ cp .env.local .env
 ```
 
-1. Set LINE_API_USER and LINE_API_KEY in the .env
+1. Create New Channel
+   https://developers.line.biz/ja/
 
-2. Register the same information in secret of GitHubActions
+2. Set LINE_API_USER and LINE_API_KEY in the .env
 
-https://docs.github.com/ja/actions/security-guides/encrypted-secrets
+3. Register the same information in secret of GitHubActions
+   https://docs.github.com/ja/actions/security-guides/encrypted-secrets
 
 # Run
 
 ```bash
 $ make run
-````
+```
 
 # Test
 
